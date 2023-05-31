@@ -1,0 +1,36 @@
+{{ define "content" }}
+<h1>
+    Edit Post
+    <a href="/admin" class="btn btn-outline-primary float-right"><i class="fa fa-arrow-left"></i>Back </a>
+</h1>
+<hr>
+<form action="/admin/add" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Blog Title</label>
+        <input type="text" name="blog-title" class="form-control" value="{{ .Post.Title }}">
+    </div>
+   
+    <div class="form-group">
+        <label>Blog Description</label>
+        <textarea name="blog-desc" cols="30" rows="2" class="form-control">{{ .Post.Description }}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Blog Category</label>
+        <select name="blog-category" class="form-control">
+            <option value="1">Teknoloji</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label>Blog Picture</label>
+        <input type="file" name="blog-picture" class="form-control-file">
+    </div>
+    
+    <div class="form-group">
+        <label>Blog Content</label>
+        <textarea name="blog-content" id="summernote" cols="30" rows="2" class="form-control">{{ .Post.Content }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-success w-100 my-3">Save</button>
+</form>
+{{ end }}

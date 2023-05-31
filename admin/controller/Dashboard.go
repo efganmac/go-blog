@@ -74,3 +74,20 @@ func (dashboard Dashboard) Add(w http.ResponseWriter, r *http.Request, params ht
 	http.Redirect(w, r, "/admin", http.StatusSeeOther)
 	//TODO alert
 }
+
+func (dashboard Dashboard) Delete(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	post := models.Post{}.Get(params.ByName("id"))
+	post.Delete()
+	http.Redirect(w, r, "/admin", http.StatusSeeOther)
+}
+
+func (dashboard Dashboard) Edit(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+	view, err := template.ParseFiles(helpers.Include("dashboard/edit")...)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	data := make(map[string]interface{})
+	data["Post"] = models.Post{}.Get(params.ByName("id"))
+	view.ExecuteTemplate(w, "index", data)
+}
