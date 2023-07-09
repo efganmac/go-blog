@@ -60,6 +60,15 @@ func (post Post) Update(column string, value interface{}) {
 	db.Model(&post).Update(column, value)
 }
 
+func (post Post) Updates(data Post) {
+	db, err := gorm.Open(mysql.Open(Dns), &gorm.Config{})
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	db.Model(&post).Updates(data)
+}
+
 func (post Post) Delete() {
 	db, err := gorm.Open(mysql.Open(Dns), &gorm.Config{})
 	if err != nil {
