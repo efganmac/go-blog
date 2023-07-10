@@ -13,7 +13,7 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - 8080:80
+      - 8080:81
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=db
@@ -21,7 +21,7 @@ services:
   blog:
     build: .
     ports:
-      - 80:8080
+      - 81:8080
     volumes:
       - blogdata:/uploads
 
