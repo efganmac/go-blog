@@ -19,5 +19,8 @@ func Routes() *httprouter.Router {
 	//Serve Files
 	r.ServeFiles("/admin/assets/*filepath", http.Dir("admin/assets"))
 	r.ServeFiles("/uploads/*filepath", http.Dir("uploads"))
+
+	//Userops
+	r.GET("/admin/login", admin.Userops{}.Index)
 	return r
 }
